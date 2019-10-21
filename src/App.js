@@ -52,7 +52,9 @@ class App extends Component {
           <div className="imageLayout">
             {this.state.images.length > 1 ?
               this.state.images.map((image, index) => (
-                <img src={image.download_url} alt={index} key={index} width={Math.floor(Math.random() * 200)+200+"px"} height={Math.floor(Math.random() * 270)+200+"px"} />
+                // <div className="image">
+                  <img src={image.download_url} alt={index} key={index} width={Math.floor(Math.random() * 200)+200+"px"} height={Math.floor(Math.random() * 270)+200+"px"} />
+                // </div>
               )) : ""}
           </div>
         </InfiniteScroll>
