@@ -10,12 +10,8 @@ class App extends Component {
     super(props);
     this.state = {
       images: [],
-      url: "https://api.pexels.com/v1/curated?per_page=10&page=",
-      page: 0,
-      hasMoreItems: true,
-      items: 20,
-      isLoading: true,
-      cursor: 0
+      url: "https://picsum.photos/v2/list?limit=10&page=",
+      page: 1,
     };
   }
 
@@ -26,9 +22,10 @@ class App extends Component {
 
   loadMore() {
     setTimeout(() => {
-      axios.get("https://api.pexels.com/v1/curated?per_page=10&page="+this.state.page+1, { 'headers': { 'Authorization': "563492ad6f91700001000001a65233e371e14da7b35d21419876746b" } })
+      axios.get(this.state.url+this.state.page+1)
         .then(res => {
-          this.setState({ images: [...this.state.images,...res.data.photos],page:this.state.page+1 })
+          console.log(res);
+          this.setState({ images: [...this.state.images,...res.data],page:this.state.page+1 })
         })
         .catch(error => {
           console.log(error);
@@ -55,7 +52,7 @@ class App extends Component {
           <div>
             {this.state.images.length > 1 ?
               this.state.images.map((image, index) => (
-                <img src={image.src.medium} alt={index} key={index} />
+                <img src={image.download_url} alt={index} key={index} width={Math.floor(Math.random() * 200)+200+"px"} height={Math.floor(Math.random() * 270)+200+"px"} />
               )) : ""}
           </div>
         </InfiniteScroll>
