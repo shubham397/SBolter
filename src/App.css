@@ -20,3 +20,12 @@
 .App-link {
   color: #09d3ac;
 }
+
+.imageLayout{
+  -webkit-column-count: 3; 
+    -moz-column-count: 3;
+    column-count: 5;
+    -webkit-column-width: 33%;
+    -moz-column-width: 33%;
+    column-width: 33%;
+}
